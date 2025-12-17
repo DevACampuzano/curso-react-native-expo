@@ -1,0 +1,40 @@
+import { useLocalSearchParams } from 'expo-router';
+import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
+import MovieCast from '@/presentation/components/movie/MovieCast';
+import MovieDescription from '@/presentation/components/movie/MovieDescription';
+import MovieHeader from '@/presentation/components/movie/MovieHeader';
+import { useMovie } from '@/presentation/hooks/useMovie';
+
+const MovieScreen = () => {
+	const { id } = useLocalSearchParams();
+	const { movieQuery, castQuery } = useMovie(+id);
+
+	if (
+		movieQuery.isLoading ||
+		!movieQuery.data ||
+		castQuery.isLoading ||
+		!castQuery.data
+	) {
+		return (
+			<View className="flex-1 items-center justify-center">
+				<Text className="mb-4 text-2xl font-bold">Espere por favor...</Text>
+				<ActivityIndicator color="purple" size={30} />
+			</View>
+		);
+	}
+
+	return (
+		<ScrollView showsVerticalScrollIndicator={false}>
+			<MovieHeader
+				id={+id}
+				poster={movieQuery.data.poster}
+				originalTitle={movieQuery.data.originalTitle}
+				title={movieQuery.data.title}
+			/>
+			<MovieDescription movie={movieQuery.data} />
+			<MovieCast cast={castQuery.data} />
+		</ScrollView>
+	);
+};
+
+export default MovieScreen;

@@ -1,7 +1,7 @@
 import { ActivityIndicator, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import MainSlideshow from '@/presentation/components/MainSlideshow';
-import MovieHorizontalList from '@/presentation/components/MovieHorizontalList';
+import MainSlideshow from '@/presentation/components/Movies/MainSlideshow';
+import MovieHorizontalList from '@/presentation/components/Movies/MovieHorizontalList';
 import { useMovies } from '@/presentation/hooks/useMovies';
 
 export default function HomeScreen() {
@@ -10,13 +10,13 @@ export default function HomeScreen() {
 	const safeArea = useSafeAreaInsets();
 	if (
 		nowPlayingQuery.isLoading ||
-		nowPlayingQuery.isFetching ||
-		popularQuery.isLoading ||
-		popularQuery.isFetching ||
-		topRatedQuery.isLoading ||
-		topRatedQuery.isFetching ||
-		upcomingQuery.isLoading ||
-		upcomingQuery.isFetching
+		nowPlayingQuery.isFetching //||
+		// popularQuery.isLoading ||
+		// popularQuery.isFetching ||
+		// topRatedQuery.isLoading ||
+		// topRatedQuery.isFetching ||
+		// upcomingQuery.isLoading ||
+		// upcomingQuery.isFetching
 	) {
 		return (
 			<View className="flex-1 items-center justify-center">
@@ -41,7 +41,8 @@ export default function HomeScreen() {
 			{/*  Top Rated */}
 			<MovieHorizontalList
 				title="Mejor Calificadas"
-				movies={topRatedQuery.data ?? []}
+				movies={topRatedQuery.data?.pages.flat() ?? []}
+				loadNextPage={topRatedQuery.fetchNextPage}
 				className="mb-5"
 			/>
 

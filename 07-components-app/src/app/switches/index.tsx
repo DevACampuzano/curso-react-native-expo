@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ThemedCard from '@/presentation/shared/ThemedCard';
+import ThemedSwitch from '@/presentation/shared/ThemedSwitch';
 import ThemedView from '@/presentation/shared/ThemedView';
-import ThemeSwitch from '@/presentation/shared/ThemeSwitch';
 
 const Switches = () => {
 	const [isEnabled, setIsEnabled] = useState(false);
@@ -16,25 +16,25 @@ const Switches = () => {
 					onValueChange={toggleSwitch}
 					value={isEnabled}
 				/> */}
-				<ThemeSwitch
+				<ThemedSwitch
 					text="Activo"
 					value={isEnabled}
 					onValueChange={toggleSwitch}
 					className="mb-4"
 				/>
-				<ThemeSwitch
+				<ThemedSwitch
 					text="Activo"
 					value={isEnabled}
 					onValueChange={toggleSwitch}
 					className="mb-4"
 				/>
-				<ThemeSwitch
+				<ThemedSwitch
 					text="Activo"
 					value={isEnabled}
 					onValueChange={toggleSwitch}
 					className="mb-4"
 				/>
-				<ThemeSwitch
+				<ThemedSwitch
 					text="Activo"
 					value={isEnabled}
 					onValueChange={toggleSwitch}

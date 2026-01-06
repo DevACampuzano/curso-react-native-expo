@@ -12,7 +12,7 @@ interface Props {
 
 const isAndroid = Platform.OS === 'android';
 
-const ThemeSwitch: React.FC<Props> = ({
+const ThemedSwitch: React.FC<Props> = ({
 	text,
 	onValueChange,
 	value,
@@ -35,4 +35,4 @@ const ThemeSwitch: React.FC<Props> = ({
 	);
 };
 
-export default ThemeSwitch;
+export default ThemedSwitch;

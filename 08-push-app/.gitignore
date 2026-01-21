@@ -44,3 +44,4 @@ app-example
 
 expo-push-notifications-79766-firebase-adminsdk-fbsvc-ca44f3ef8b.json
 google-services.json
+.DS_Store

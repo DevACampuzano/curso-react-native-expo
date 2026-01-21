@@ -1,6 +1,7 @@
 import Constants from 'expo-constants';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
@@ -61,8 +62,8 @@ async function registerForPushNotificationsAsync() {
 	}
 
 	if (!Device.isDevice) {
-		handleRegistrationError('Must use physical device for push notifications');
-		return;
+		//handleRegistrationError('Must use physical device for push notifications');
+		//return;
 	}
 	const { status: existingStatus } = await Notifications.getPermissionsAsync();
 	let finalStatus = existingStatus;
@@ -122,7 +123,12 @@ const usePushNotifications = () => {
 
 		const responseListener =
 			Notifications.addNotificationResponseReceivedListener((response) => {
-				console.log(response);
+				console.log(JSON.stringify(response));
+
+				const { chatId } = response.notification.request.content.data;
+				if (chatId) {
+					router.push(`/chat/${chatId}`);
+				}
 			});
 
 		return () => {
